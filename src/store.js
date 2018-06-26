@@ -8,22 +8,22 @@ import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/map';
 import { ajax } from 'rxjs/observable/dom/ajax';
 
-const learnMoreEpic = action$ =>
+const learnMoreEpic = (action$) =>
   action$
     .ofType('LEARN MORE')
-    .mergeMap(action =>
-      ajax.getJSON(`/learn`).map(response => learnMoreFulfilled(response))
+    .mergeMap((action) =>
+      ajax.getJSON(`/learn`).map((response) => learnMoreFulfilled(response))
     );
 
-const learnMoreFulfilled = payload => ({
+const learnMoreFulfilled = (payload) => ({
   type: 'LEARN MORE FULFILLED',
-  payload
+  payload,
 });
 
 const initialState = new Map({
   title: 'Чернобог (Czorneboh, Czernebog)',
   content: 'В мифологии балтийских славян злой бог, приносящий несчастье.',
-  image: chernobogImage
+  image: '/images/chernobog.jpg',
 });
 
 const reducer = (state = initialState, action) => {
@@ -31,7 +31,8 @@ const reducer = (state = initialState, action) => {
     case 'LEARN MORE FULFILLED':
       return state
         .set('title', action.payload.title)
-        .set('content', action.payload.content);
+        .set('content', action.payload.content)
+        .set('image', action.payload.image);
     default:
       return state;
   }
