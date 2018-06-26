@@ -2,7 +2,6 @@ import { createStore, applyMiddleware } from 'redux';
 import { createEpicMiddleware } from 'redux-observable';
 import { Map } from 'immutable';
 import { composeWithDevTools } from 'remote-redux-devtools';
-import chernobogImage from './chernobog.jpg';
 import 'rxjs';
 import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/map';
